@@ -45,3 +45,28 @@ export const deleteMenu = (id: number): Promise<any> => {
     url: `/boss/menu/${id}`
   })
 }
+
+export const getRoleMenus = (roleId: string|number): Promise<any> => {
+  return request({
+    method: 'GET',
+    url: '/boss/menu/getRoleMenus',
+    params: {
+      roleId
+    }
+  })
+}
+
+export const getMenuNodeList = (): Promise<any> => {
+  return request({
+    method: 'GET',
+    url: '/boss/menu/getMenuNodeList'
+  })
+}
+
+export const allocateRoleMenus = (data: any): Promise<any> => {
+  return request({
+    method: 'POST',
+    url: '/boss/menu/allocateRoleMenus',
+    data
+  })
+}
