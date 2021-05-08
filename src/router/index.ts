@@ -39,9 +39,14 @@ const routes: Array<RouteConfig> = [
         name: 'role',
         component: () => import(/* webpackChunkName: 'role' */'@/views/role/index.vue')
       }, {
-        path: '/role/edit/:roleId',
+        path: '/role/alloc-menu/:roleId',
         name: 'alloc-menu',
         component: () => import(/* webpackChunkName: 'alloc-menu' */'@/views/role/alloc-menu.vue'),
+        props: true
+      }, {
+        path: '/role/alloc-resource/:roleId',
+        name: 'alloc-resource',
+        component: () => import(/* webpackChunkName: 'alloc-resource' */'@/views/role/alloc-resource.vue'),
         props: true
       },
       {
@@ -58,6 +63,10 @@ const routes: Array<RouteConfig> = [
         path: '/course',
         name: 'course',
         component: () => import(/* webpackChunkName: 'course' */'@/views/course/index.vue')
+      }, {
+        path: '/addCourse',
+        name: 'addCourse',
+        component: () => import(/* webpackChunkName: 'addCourse' */'@/views/course/components/addCourse.vue')
       },
       {
         path: '/advert',

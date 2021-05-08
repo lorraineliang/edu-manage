@@ -8,6 +8,9 @@ interface User {
   phone: string,
   password: string
 }
+interface forbidAUser {
+  userId: string | number
+}
 
 export const login = (data: User) :Promise<any> => {
   return request({
@@ -29,5 +32,21 @@ export const getUserInfo = () :Promise<any> => {
     // headers: {
     //   Authorization: store.state.user.access_token
     // }
+  })
+}
+
+export const getUserPages = (data: any) :Promise<any> => {
+  return request({
+    method: 'POST',
+    url: '/boss/user/getUserPages',
+    data
+  })
+}
+
+export const forbidUser = (data: forbidAUser) :Promise<any> => {
+  return request({
+    method: 'POST',
+    url: '/boss/user/forbidUser',
+    data
   })
 }
