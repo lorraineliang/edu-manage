@@ -36,3 +36,22 @@ export const imgUpload = (data: any, onUploadProgress: (progressEvent: ProgressE
     onUploadProgress
   })
 }
+export const imgUpload1 = (data: any, onUploadProgress?: (progressEvent: ProgressEvent) => void): Promise<any> => {
+  return request({
+    method: 'POST',
+    url: '/boss/course/upload',
+    data,
+    // HTML5 新增的上传响应事件：progress
+    onUploadProgress
+  })
+}
+
+export const getCourseById = (courseId: any): Promise<any> => {
+  return request({
+    method: 'GET',
+    url: '/boss/course/getCourseById',
+    params: {
+      courseId
+    }
+  })
+}

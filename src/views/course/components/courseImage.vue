@@ -37,16 +37,35 @@ export default Vue.extend({
   },
   methods: {
     async handleUpload (option: any) {
-      this.isLoading = true
-      const fd = new FormData()
-      fd.append('file', option.file)
-      const { data } = await imgUpload(fd, e => {
-        this.percentage = Math.floor(e.loaded / e.total * 100)
-      })
+      // this.isLoading = true
+      // const fd = new FormData()
+      // fd.append('file', option.file)
+      // const { data } = await imgUpload(fd, e => {
+      //   this.percentage = Math.floor(e.loaded / e.total * 100)
+      // })
+      // this.isLoading = false
+      // this.percentage = 0
+      // // this.course.courseListImg = data.data.name
+      // this.$emit('input', data.data.name)
+      try {
+        this.isLoading = true
+        const fd = new FormData()
+        fd.append('file', option.file)
+        const { data } = await imgUpload(fd, e => {
+          this.percentage = Math.floor(e.loaded / e.total * 100)
+        })
+        if (data.code === '000000') {
+          this.isLoading = false
+          this.percentage = 0
+          this.$emit('input', data.data.name)
+        } else {
+          this.$message.error('上传失败')
+        }
+      } catch (err) {
+        console.log(err)
+      }
       this.isLoading = false
       this.percentage = 0
-      // this.course.courseListImg = data.data.name
-      this.$emit('input', data.data.name)
     },
     beforeAvatarUpload (file: any) {
       const isJPG = file.type === 'image/jpeg'

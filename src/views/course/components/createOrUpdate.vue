@@ -107,12 +107,13 @@
         </div>
         <div v-show="active === 3">
           <el-form-item label="课程详情" prop="courseDescriptionMarkDown">
-            <el-input
+            <!-- <el-input
               type="textarea"
               v-model="course.courseDescriptionMarkDown"
               placeholder="请输入内容"
             >
-            </el-input>
+            </el-input> -->
+            <text-editor v-model="course.courseDescriptionMarkDown" />
           </el-form-item>
           <el-form-item label="是否发布">
           <el-switch
@@ -135,12 +136,24 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import moment from 'moment'
 import CourseImage from './courseImage.vue'
-import { saveOrUpdateCourse } from '@/services/course'
+import TextEditor from '@/components/textEditor/index.vue'
+import { saveOrUpdateCourse, getCourseById } from '@/services/course'
 export default Vue.extend({
-  name: 'addCourse',
+  name: 'createOrUpdate',
+  props: {
+    courseId: {
+      type: [String, Number]
+    },
+    isEdit: {
+      type: Boolean,
+      default: false
+    }
+  },
   components: {
-    CourseImage
+    CourseImage,
+    TextEditor
   },
   data () {
     return {
@@ -185,7 +198,19 @@ export default Vue.extend({
       }
     }
   },
+  created () {
+    this.isEdit && this.loadCourse()
+  },
   methods: {
+    async loadCourse () {
+      const { data } = await getCourseById(this.courseId)
+      const { activityCourseDTO } = data.data
+      if (activityCourseDTO) {
+        activityCourseDTO.beginTime = moment(activityCourseDTO.beginTime).format('YYYY-MM-DD')
+        activityCourseDTO.endTime = moment(activityCourseDTO.beginTime).format('YYYY-MM-DD')
+      }
+      this.course = data.data
+    },
     async handleSave () {
       const { data } = await saveOrUpdateCourse(this.course)
       console.log(data)

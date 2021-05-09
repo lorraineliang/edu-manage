@@ -22,7 +22,7 @@
             </el-form-item>
           </el-form>
         </div>
-        <el-button type="primary" style="float: right" @click="$router.push({name: 'addCourse'})" :disabled="isLoading">+ 添加课程</el-button>
+        <el-button type="primary" style="float: right" @click="$router.push({name: 'createCourse'})" :disabled="isLoading">+ 添加课程</el-button>
       </div>
       <el-table
         :data="courseList"
@@ -69,7 +69,16 @@
           label="操作"
         >
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="handleEdit(scope.row)">编辑</el-button>
+            <el-button
+              type="text"
+              size="small"
+              @click="$router.push({
+                name: 'editCourse',
+                params: {
+                  courseId: scope.row.id
+                }
+              })"
+            >编辑</el-button>
             <el-button type="text" size="small" @click="handleManage(scope.row)">内容管理</el-button>
           </template>
         </el-table-column>
