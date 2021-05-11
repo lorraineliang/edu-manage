@@ -79,7 +79,15 @@
                 }
               })"
             >编辑</el-button>
-            <el-button type="text" size="small" @click="handleManage(scope.row)">内容管理</el-button>
+            <el-button
+              type="text"
+              size="small"
+              @click="$router.push({
+                name: 'editSection',
+                params: {
+                  courseId: scope.row.id
+                }
+              })">内容管理</el-button>
           </template>
         </el-table-column>
       </el-table>

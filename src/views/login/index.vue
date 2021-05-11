@@ -54,7 +54,8 @@ export default Vue.extend({
   },
   methods: {
     ...mapMutations([
-      'setUser'
+      'setUser',
+      'setCollapse'
     ]),
     async onSubmit () {
       try {
@@ -67,6 +68,7 @@ export default Vue.extend({
         } else {
           this.$message.success('登录成功')
           this.setUser(data.content)
+          this.setCollapse(false)
           this.$router.push(this.$route.query.redirect as string || '/')
         }
       } catch (err) {

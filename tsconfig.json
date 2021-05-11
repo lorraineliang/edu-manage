@@ -35,6 +35,7 @@
     "tests/**/*.tsx"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "public/aliyun-upload-sdk-1.5.0/**"
   ]
 }

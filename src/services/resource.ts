@@ -9,3 +9,18 @@ export const getResourcePages = (data: any): Promise<any> => {
     data
   })
 }
+
+export const saveOrUpdate = (data: any): Promise<any> => {
+  return request({
+    method: 'POST',
+    url: '/boss/resource/saveOrUpdate',
+    data
+  })
+}
+
+export const delResource = (id: string|number): Promise<any> => {
+  return request({
+    method: 'DELETE',
+    url: `/boss/resource/${id}`
+  })
+}

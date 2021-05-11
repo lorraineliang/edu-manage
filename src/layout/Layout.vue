@@ -1,8 +1,8 @@
 <template>
   <el-container>
-  <el-aside width="200px">
+  <div style="height:100vh">
     <layout-aside />
-  </el-aside>
+  </div>
   <el-container>
     <el-header>
       <layout-header />

@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: JSON.parse(localStorage.getItem('user') || 'null')
+    user: JSON.parse(localStorage.getItem('user') || 'null'),
+    collapse: JSON.parse(localStorage.getItem('collapse') || 'false'),
+    course: {}
   },
   mutations: {
     setUser (state, payload) {
@@ -13,6 +15,13 @@ export default new Vuex.Store({
 
       // 为了防止页面刷新数据丢失 需要把user数据持久化
       localStorage.setItem('user', payload)
+    },
+    setCollapse (state, payload) {
+      state.collapse = JSON.parse(payload)
+      localStorage.setItem('collapse', payload)
+    },
+    setCourse (state, payload) {
+      state.course = payload
     }
   },
   actions: {

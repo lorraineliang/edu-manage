@@ -36,6 +36,7 @@ export default Vue.extend({
   },
   methods: {
     handleAdd () {
+      this.roleData = {}
       this.dialogFormVisible = true
       this.isAdd = true
     },
