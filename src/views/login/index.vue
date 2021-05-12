@@ -62,14 +62,13 @@ export default Vue.extend({
         await (this.$refs.form as Form).validate()
         this.isLoading = true
         const { data } = await login(this.form)
-        console.log(data)
         if (data.state !== 1) {
           this.$message.error(data.message)
         } else {
           this.$message.success('登录成功')
           this.setUser(data.content)
           this.setCollapse(false)
-          this.$router.push(this.$route.query.redirect as string || '/')
+          this.$router.push(this.$route.query.redirect as string || '/course')
         }
       } catch (err) {
         console.log(err)

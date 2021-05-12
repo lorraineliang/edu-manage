@@ -1,7 +1,7 @@
 <template>
   <div class="aside">
     <el-menu
-        default-active="1"
+        default-active="/course"
         @open="handleOpen"
         @close="handleClose"
         :collapse="isCollapse"

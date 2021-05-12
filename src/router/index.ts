@@ -116,6 +116,15 @@ const routes: Array<RouteConfig> = [
         meta: {
           title: '广告列表'
         }
+      }, {
+        path: '/advert/create',
+        name: 'createAdvert',
+        component: () => import(/* webpackChunkName: 'advert-create-edit' */'@/views/advert/components/createOrUpdate.vue')
+      }, {
+        path: '/advert/:advertId',
+        name: 'editAdvert',
+        component: () => import(/* webpackChunkName: 'advert-create-edit' */'@/views/advert/components/createOrUpdate.vue'),
+        props: true
       },
       {
         path: '/advert-space',
